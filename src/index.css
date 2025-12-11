@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playwrite+US+Trad+Guides&family=Slabo+13px&display=swap');
+@import "tailwindcss";
+
+
+:root{
+  /* --main-bg-color-1:#0F2027;
+  --main-bg-color-2:#28623A; */
+
+  --main-bg-color-1:#2C0F12;
+  --main-bg-color-2:#6B1E23;
+
+}
+@theme{
+
+  --font-Dancing:"Dancing Script", cursive;
+  --font-Saira:"Saira", sans-serif;
+}
