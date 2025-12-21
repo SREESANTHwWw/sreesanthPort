@@ -119,7 +119,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
               
 
-              className="sm:w-20 w-16 sm:h-20 h-16 flex justify-center items-center rounded-full bg-red-950 shadow-lg border border-gray-300 dark:border-gray-700 cursor-pointer"
+              className="sm:w-20 w-16 sm:h-20 h-16 flex justify-center items-center rounded-full shadow-lg border border-gray-300 dark:border-gray-700 cursor-pointer"
             >
               <div className="sm:text-4xl text-2xl">{skill.icon}</div>
             </motion.div>

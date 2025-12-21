@@ -14,7 +14,7 @@ const App = () => {
       </section>
       <section
         id="about"
-        className="w-full h-screen bg-linear-to-l from-(--main-bg-color-1) to-(--main-bg-color-2)"
+        className="w-full h-screen "
       >
         <About />
       </section>
@@ -23,7 +23,7 @@ const App = () => {
       </section>
       <section
         id="contact"
-        className="w-full h-screen bg-linear-to-l from-(--main-bg-color-1) to-(--main-bg-color-2)"
+        className="w-full h-screen "
       >
         <Contact />
       </section>

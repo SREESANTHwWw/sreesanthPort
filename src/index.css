@@ -7,8 +7,10 @@
   /* --main-bg-color-1:#0F2027;
   --main-bg-color-2:#28623A; */
 
-  --main-bg-color-1:#2C0F12;
-  --main-bg-color-2:#6B1E23;
+  /* --main-bg-color-1:#2C0F12;
+  --main-bg-color-2:#6B1E23; */
+    --main-bg-color-1:#000000;
+  --main-bg-color-2:#1d1c1c;
 
 }
 @theme{
