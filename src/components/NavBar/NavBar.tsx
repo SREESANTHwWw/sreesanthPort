@@ -8,28 +8,28 @@ const NavBar = () => {
   console.log(isMobile);
 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  // const [showNavbar, setShowNavbar] = useState(true);
+  // const [lastScrollY, setLastScrollY] = useState(0);
 
   // Detect scroll styling
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setIsScrolled(window.scrollY > 50);
 
-      const currentScroll = window.scrollY;
+  //     const currentScroll = window.scrollY;
 
-      if (currentScroll > lastScrollY && currentScroll > 100) {
-        setShowNavbar(false); 
-      } else {
-        setShowNavbar(true); 
-      }
+  //     if (currentScroll > lastScrollY && currentScroll > 100) {
+  //       setShowNavbar(false); 
+  //     } else {
+  //       setShowNavbar(true); 
+  //     }
 
-      setLastScrollY(currentScroll);
-    };
+  //     setLastScrollY(currentScroll);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [lastScrollY]);
 
 
   useEffect(() => {
