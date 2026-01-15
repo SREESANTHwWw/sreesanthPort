@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import SideBar from "./SIdeBar";
 import { VscThreeBars } from "react-icons/vsc";
 
-
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -20,9 +19,9 @@ const NavBar = () => {
       const currentScroll = window.scrollY;
 
       if (currentScroll > lastScrollY && currentScroll > 100) {
-        setShowNavbar(false); // hide navbar on scroll down
+        setShowNavbar(false); 
       } else {
-        setShowNavbar(true); // show navbar on scroll up
+        setShowNavbar(true); 
       }
 
       setLastScrollY(currentScroll);
@@ -32,7 +31,7 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // Detect mobile screen
+
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
@@ -52,9 +51,8 @@ const NavBar = () => {
   return (
     <>
       <div
-        className={`w-full h-32 flex justify-center items-center fixed z-50 transition-all duration-300
-          ${isScrolled ? "bg-black/80 shadow-md" : "bg-transparent"}
-          ${showNavbar ? "translate-y-0" : "-translate-y-full"}
+        className={`w-full md:h-32 h-20 flex justify-center items-center fixed bg-linear-to-r from-(--main-bg-color-1) to-(--main-bg-color-2) z-50 transition-all duration-300
+       backdrop-blur-3xl
         `}
       >
         <div className="flex items-center w-[85%] justify-between gap-10">
@@ -69,22 +67,32 @@ const NavBar = () => {
               isScroller={isScrolled}
             />
           )}
-
           <div className="grid-cols-4 items-center gap-6 font-Saira sm:grid hidden">
-            {["Home", "About", "Projects", "Contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className={`group text-2xl transition duration-300 text-white`}
-              >
-                {item}
-                <span
-                  className={`block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5
-                    ${isScrolled ? "bg-black" : "bg-white"}
-                  `}
-                ></span>
-              </a>
-            ))}
+            {["Home", "About", "Projects", "Contact"].map((item) => {
+              const id = item.toLowerCase();
+
+              return (
+                <a
+                  key={item}
+                  href={`#${id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById(id)?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }}
+                  className="group text-2xl transition  duration-300 text-white cursor-pointer"
+                >
+                  {item}
+                  <span
+                    className={`block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5
+            bg-white
+          `}
+                  />
+                </a>
+              );
+            })}
           </div>
 
           <button className="sm:hidden text-3xl text-white" onClick={BarFun}>

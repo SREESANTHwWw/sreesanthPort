@@ -67,8 +67,7 @@ const About = () => {
       ref={aboutRef}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-14 gap-7 max-w-6xl text-white">
-        
-        {/* LEFT SIDE (Animated when in view) */}
+       
         <motion.div
           variants={cardVar}
           initial={{ x: -120, opacity: 0 }}
@@ -104,7 +103,7 @@ const About = () => {
           </div>
         </motion.div>
 
-        {/* RIGHT SIDE SKILLS */}
+      
         <motion.div
         initial={{ x: 120, opacity: 0 }}
         animate={isInView ? { x: 0, opacity: 1 } : {}}

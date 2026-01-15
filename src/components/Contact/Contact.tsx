@@ -20,7 +20,7 @@ const Contact = () => {
       )
       .then(() => {
         alert("Message sent successfully!");
-        setForm({ name: "", email: "", message: "" }); // clear form
+        setForm({ name: "", email: "", message: "" }); 
       })
       .catch((error) => {
         console.log(error);
@@ -40,7 +40,6 @@ const Contact = () => {
           <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-white"></span>
         </h2>
 
-        {/* FORM START */}
         <form
           onSubmit={handleSubmit}
           className="flex flex-col bg-black/70 items-center  rounded-2xl   w-full gap-10 p-10 mt-10  "

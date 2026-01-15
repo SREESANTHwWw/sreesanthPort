@@ -35,7 +35,6 @@ const Projects = () => {
     setIndex((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
-  // ⬇️ Scroll animation setup
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-150px" });
   const cardVar = {
@@ -44,16 +43,16 @@ const Projects = () => {
   };
 
   return (
-    <div className="w-full h-full flex justify-center text-white" ref={ref}>
-      <div className="flex flex-col items-center gap-10 mt-20">
+    <div className="w-full  flex justify-center text-white" ref={ref}>
+      <div className="flex flex-col items-center gap-10 mt-10 ">
         <h2 className="group text-4xl text-white transition duration-300 font-Saira font-semibold">
           Projects
           <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-white"></span>
         </h2>
 
-        {/* Slider Container */}
+    
         <div className="w-full max-w-7xl overflow-hidden relative">
-          {/* Track */}
+      
           <div
             className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${index * 100}%)` }}
@@ -68,7 +67,7 @@ const Projects = () => {
                 key={project.id}
                 className="min-w-full max-w-full grid sm:grid-cols-2 grid-cols-1 gap-8 p-6"
               >
-                {/* Left: Details */}
+   
                 <div className="flex flex-col p-10 gap-10 bg-black/70 rounded-2xl">
                   <div className="flex justify-between">
                     <h3 className="sm:text-3xl text-2xl font-bold mb-4 font-Saira">
@@ -93,7 +92,7 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Right Images */}
+         
                 <div className="grid gap-5">
                   <img
                     src={project.image1}
