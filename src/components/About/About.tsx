@@ -1,131 +1,155 @@
+import React, { useRef } from "react";
+import type { ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-
+import type { Variants } from "framer-motion";
 import {
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaReact,
-  FaNodeJs,
-  FaGit,
-  FaGithub,
-  FaDocker,
+  FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGit, FaGithub, FaDocker,
 } from "react-icons/fa";
-
 import {
-  SiTailwindcss,
-  SiTypescript,
-  SiMongodb,
-  SiExpress,
-  SiJest,
-  SiMysql,
-  SiNextdotjs,
+  SiTailwindcss, SiTypescript, SiMongodb, SiExpress, SiJest, SiMysql, SiNextdotjs,
 } from "react-icons/si";
 
-const skills = [
-  { name: "HTML", icon: <FaHtml5 className="text-orange-500" /> },
-  { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
-  { name: "Tailwind CSS", icon: <SiTailwindcss className="text-teal-400" /> },
-  { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
-  { name: "TypeScript", icon: <SiTypescript className="text-blue-600" /> },
-  { name: "React", icon: <FaReact className="text-blue-400" /> },
-  { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-  { name: "MongoDB", icon: <SiMongodb className="text-green-600" /> },
-  { name: "Express.js", icon: <SiExpress className="text-gray-500" /> },
-  { name: "Jest", icon: <SiJest className="text-red-500" /> },
-  { name: "Git", icon: <FaGit className="text-orange-600" /> },
-  {
-    name: "GitHub",
-    icon: <FaGithub className="text-gray-900 dark:text-white" />,
-  },
-  { name: "MySQL", icon: <SiMysql className="text-blue-700" /> },
-  { name: "Docker", icon: <FaDocker className="text-blue-500" /> },
-  {
-    name: "Next.js",
-    icon: <SiNextdotjs className="text-gray-900 dark:text-white" />,
-  },
+interface Skill {
+  name: string;
+  icon: ReactNode;
+  color: string;
+}
+
+const skills: Skill[] = [
+  { name: "HTML", icon: <FaHtml5 />, color: "text-orange-500" },
+  { name: "CSS", icon: <FaCss3Alt />, color: "text-blue-500" },
+  { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "text-teal-400" },
+  { name: "JavaScript", icon: <FaJs />, color: "text-yellow-400" },
+  { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-600" },
+  { name: "React", icon: <FaReact />, color: "text-blue-400" },
+  { name: "Node.js", icon: <FaNodeJs />, color: "text-green-500" },
+  { name: "MongoDB", icon: <SiMongodb />, color: "text-green-600" },
+  { name: "Express.js", icon: <SiExpress />, color: "text-gray-400" },
+  { name: "Next.js", icon: <SiNextdotjs />, color: "text-white" },
+  { name: "Jest", icon: <SiJest />, color: "text-red-500" },
+  { name: "Git", icon: <FaGit />, color: "text-orange-600" },
+  { name: "GitHub", icon: <FaGithub />, color: "text-white" },
+  { name: "MySQL", icon: <SiMysql />, color: "text-blue-700" },
+  { name: "Docker", icon: <FaDocker />, color: "text-blue-500" },
 ];
 
-const downloadResume = () => {
-  const link = document.createElement("a");
-  link.href = "/Resume.pdf";
-  link.download = "Resume.pdf";
-  link.click();
-};
+const About: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Set once: false to re-trigger animation when scrolling back up
+  const isInView = useInView(containerRef, { once: false, amount: 0.2 });
 
-const About = () => {
-  const aboutRef = useRef(null);
-  const isInView = useInView(aboutRef, { once: true, margin: "-100px" });
-    const cardVar = {
-    hidden: { opacity: 0, y: 40 },
-    show: { opacity: 1, y: 0 },
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.05, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { y: 30, opacity: 0, filter: "blur(10px)" },
+    visible: { 
+      y: 0, 
+      opacity: 1, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] } 
+    },
+  };
+
+  const skillIconVariants: Variants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: { 
+      scale: 1, 
+      opacity: 1,
+      transition: { type: "spring", stiffness: 260, damping: 20 }
+    },
+  };
+
+  const downloadResume = () => {
+    const link = document.createElement("a");
+    link.href = "/Resume.pdf";
+    link.download = "Sreesanth_Resume.pdf";
+    link.click();
   };
 
   return (
-    <div
-      className="w-full min-h-screen flex justify-center sm:p-8 p-5"
-      ref={aboutRef}
+    <section 
+      ref={containerRef}
+      className="relative w-full min-h-screen flex items-center justify-center py-20 px-6 overflow-hidden bg-[#030303]"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-14 gap-7 max-w-6xl text-white">
-       
-        <motion.div
-          variants={cardVar}
-          initial={{ x: -120, opacity: 0 }}
-          animate={isInView ? { x: 0, opacity: 1 } : {}}
-           whileHover={{ scale: 1.03 }}
-               
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="grid grid-cols-1 rounded-2xl"
-        >
-          <div className="px-5 rounded-2xl bg-black/70">
-            <div className="flex justify-center mb-5 p-4">
-              <h2 className="group text-4xl text-white font-semibold transition duration-300 font-Saira">
-                About Me
-                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-white"></span>
-              </h2>
-            </div>
+      {/* Background Overlay */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] right-[-10%] w-[70%] lg:w-[50%] h-[50%] bg-blue-900/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[70%] lg:w-[50%] h-[50%] bg-purple-900/10 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
+      </div>
 
-            <p className="text-lg mb-4 font-Saira">
-              I'm SREESANTH M, a passionate MERN Stack Developer with expertise
-              in building modern web applications using MongoDB, Express.js,
-              React, and Node.js. I love creating dynamic and responsive user
-              interfaces that provide seamless user experiences.
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        // Conditional animation based on isInView for bidirectional scroll
+        animate={isInView ? "visible" : "hidden"}
+        className="relative z-10 max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+      >
+        
+        {/* Left Side: Text Content */}
+        <motion.div variants={itemVariants} className="space-y-8">
+          <div className="space-y-4">
+            <motion.h2 className="text-4xl lg:text-5xl font-black tracking-tight text-white flex items-center gap-4 uppercase">
+              About Me
+              <div className="h-px flex-1 bg-linear-to-r from-blue-500 to-transparent opacity-50" />
+            </motion.h2>
+            <p className="text-gray-400 text-lg lg:text-xl leading-relaxed font-light">
+              I'm <span className="text-white font-medium">SREESANTH M</span>, a 
+              forward-thinking <span className="text-blue-400">MERN Stack Developer</span>. 
+              I specialize in crafting high-performance web ecosystems where 
+              clean code meets exceptional user experience.
+            </p>
+            <p className="text-gray-500 text-md leading-relaxed">
+              My approach blends technical precision with creative problem solving, 
+              ensuring every application is not just functional, but scalable and 
+              delightful to use.
             </p>
           </div>
 
-          <div className="grid items-start h-20 p-6">
-            <button
-              className="w-full cursor-pointer sm:h-16 h-10 rounded-2xl bg-amber-50 text-black sm:text-2xl md:text-3xl text-xl font-Saira font-bold"
-              onClick={downloadResume}
-            >
-              Resume
-            </button>
-          </div>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={downloadResume}
+            className="group relative px-8 py-4 bg-white text-black rounded-xl font-bold transition-all overflow-hidden flex items-center gap-3"
+          >
+            <span className="relative z-10">DOWNLOAD RESUME</span>
+            <div className="absolute inset-0 bg-linear-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-10 transition-opacity" />
+          </motion.button>
         </motion.div>
 
-      
-        <motion.div
-        initial={{ x: 120, opacity: 0 }}
-        animate={isInView ? { x: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        
-        
-        className="grid grid-cols-5 sm:grid-cols-4 sm:gap-10 gap-6">
+        {/* Right Side: Skills Cloud */}
+        <motion.div 
+          className="grid grid-cols-4 sm:grid-cols-5 gap-4 lg:gap-6"
+        >
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-              
-
-              className="sm:w-20 w-16 sm:h-20 h-16 flex justify-center items-center rounded-full shadow-lg border border-gray-300 dark:border-gray-700 cursor-pointer"
+              variants={skillIconVariants}
+              whileHover={{ 
+                y: -5, 
+                backgroundColor: "rgba(255,255,255,0.05)",
+                borderColor: "rgba(255,255,255,0.2)" 
+              }}
+              className="group aspect-square flex flex-col items-center justify-center rounded-2xl border border-white/5 backdrop-blur-sm transition-colors cursor-default relative"
             >
-              <div className="sm:text-4xl text-2xl">{skill.icon}</div>
+              <div className={`text-3xl lg:text-4xl ${skill.color} transition-transform duration-300 group-hover:scale-110`}>
+                {skill.icon}
+              </div>
+              <span className="absolute -bottom-8 opacity-0 group-hover:opacity-100 group-hover:-bottom-6 text-[10px] font-mono text-gray-500 transition-all uppercase tracking-widest">
+                {skill.name}
+              </span>
             </motion.div>
           ))}
         </motion.div>
-      </div>
-    </div>
+      </motion.div>
+    </section>
   );
 };
 
