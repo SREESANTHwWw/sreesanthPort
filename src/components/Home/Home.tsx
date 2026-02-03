@@ -68,7 +68,7 @@ const Home: React.FC = () => {
           variants={fadeInUp}
           className="lg:col-span-5 flex justify-center items-center order-1 lg:order-2"
         >
-          <div className="relative group w-full max-w-[60] sm:max-w-[300px] lg:max-w-[320px]">
+          <div className="relative group w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[320px]">
             <div className="absolute -inset-3 border border-white/10 rounded-lg pointer-events-none group-hover:scale-105 transition-transform duration-500 hidden sm:block" />
             
             <div className="relative aspect-4/5 lg:h-[420px] w-full rounded-[1.8rem] overflow-hidden bg-zinc-900 shadow-2xl">
